@@ -1,27 +1,29 @@
-class Course:
-    students = []
+class Student:
+    def __init__(self, student_id, name, age):
+        self.id          = student_id
+        self.talaba_ismi = name
+        self.yoshi       = age
+        self.courses = []
+        self.grades = []
 
-    def __init__(self, kurs_nomi, uqituvchi_ismi) ->None:
-        self.kurs = kurs_nomi
-        self.ustoz_ismi = uqituvchi_ismi
+    def enroll(self, course):
+        self.courses.append(course)
 
-    def add_student(self, talaba):
-            self.students.append(talaba)
+    def add_grade(self, course, grade):
+        self.grades.append((course, grade))
+
+    def get_grade(self, course):
+        for c, g in self.grades:
+            if c == course:
+                return g
+        return 
+
+    def get_courses(self):
+        return self.courses
     
-    def remove_student(self, student):
-         self.students.remove(student)
+a = Student(1, "Ali", 20)
+a.enroll("Jsmoniy tarbiya")
+a.add_grade("matematika", 95)
 
-    def get_info(self):
-         return f"ismi {self.students}"
-    
-    
-s = Course("Matem", "Zafar")
-s.add_student("Muzafar")
-s.add_student("Ali")
-s.add_student("Jafar")
-
-print(s.get_info())
-
-s.remove_student("Ali")
-print("qolganlar")
-print(s.get_info())
+print(a.get_grade("matematika"))
+print(a.get_courses())
